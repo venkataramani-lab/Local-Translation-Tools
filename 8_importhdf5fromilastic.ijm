@@ -1,0 +1,16 @@
+print("\\Clear");
+close("*");
+directory = File.openDialog("choosefile");
+print("directory= " + directory);
+indexfile = lastIndexOf(directory, "\\");
+print("index = " + indexfile);
+titlesave = substring(directory, 0, directory.length-3);
+print("titlesave= " + titlesave);
+argument = "select="+directory +" datasetname=/exported_data axisorder=tzyxc";
+run("Import HDF5", argument);
+run("Stack to Images");
+selectWindow("1");
+rename(titlesave);
+print("savepath= " + titlesave);
+saveAs("tiff", titlesave);
+close("*");
